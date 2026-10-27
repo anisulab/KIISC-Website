@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-white font-sans text-slate-800 antialiased;
+  }
+  html:lang(bn) body {
+    @apply font-bengali;
+    line-height: 1.7;
+  }
+  .heading {
+    @apply font-display tracking-tight;
+  }
+  html:lang(bn) .heading {
+    @apply font-bengali;
+    letter-spacing: 0;
+  }
+  :focus-visible {
+    outline: 2px solid theme('colors.gold.500');
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .hero-pattern {
+    background-image:
+      radial-gradient(circle at 85% 20%, rgba(47, 95, 224, 0.35), transparent 45%),
+      radial-gradient(circle at 10% 90%, rgba(196, 154, 58, 0.18), transparent 40%),
+      linear-gradient(135deg, #08112a 0%, #14234f 55%, #1d40a6 130%);
+  }
+  .prose-plain p + p {
+    @apply mt-4;
+  }
+}
+
+/* Printed documents and "Save as PDF" use A4. Wide reports opt into landscape. */
+@page {
+  size: A4;
+  margin: 12mm;
+}
+@page landscape {
+  size: A4 landscape;
+  margin: 10mm;
+}
+
+/* Only elements marked .no-print are hidden: documents use <header>/<footer> for
+   their own letterhead and signature lines, which must print. */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  .print-landscape {
+    page: landscape;
+  }
+  /* Page-level grey backgrounds (console and portal layouts) print white. */
+  .bg-slate-50 {
+    background-color: #fff !important;
+  }
+  html,
+  body {
+    background: #fff !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  /* Tables print at page width instead of being cut off by their scroll container. */
+  .overflow-x-auto {
+    overflow: visible !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  [class*='min-w-'] {
+    min-width: 0 !important;
+  }
+  tr {
+    break-inside: avoid;
+  }
+  thead {
+    display: table-header-group;
+  }
+  .hero-pattern {
+    background: none !important;
+    color: #000 !important;
+  }
+  body {
+    @apply text-black;
+  }
+}

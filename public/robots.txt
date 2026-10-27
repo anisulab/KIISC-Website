@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /login
+Disallow: /reset-password
+Disallow: /portal
+Disallow: /admin
+
+# Sitemap: https://www.your-school-domain.edu.bd/sitemap.xml
+# The sitemap is generated into dist/ at build time using VITE_SITE_URL.

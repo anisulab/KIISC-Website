@@ -1,0 +1,14 @@
+# Lovable Cloud may add project_id and other settings here.
+
+[functions.admin-users]
+verify_jwt = true
+
+# Public endpoint (applicants are not signed in). It rate-limits by IP and can
+# require a Cloudflare Turnstile CAPTCHA when TURNSTILE_SECRET_KEY is set.
+[functions.submit-application]
+verify_jwt = false
+
+# Called by the scheduler with the x-cron-secret header (no user session), or by
+# an administrator; the function checks one of the two itself.
+[functions.send-notifications]
+verify_jwt = false
