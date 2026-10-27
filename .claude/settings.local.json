@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(sed -n \"1,/await send\\('Runtime.enable'\\);/p\" drive.mjs)",
+      "Bash(cat)",
+      "Bash(curl -s -o /dev/null -w \"server %{http_code}\\\\n\" http://localhost:4180/gallery/campus-event-2026.jpg)",
+      "Bash(node drive-gallery.mjs)"
+    ]
+  }
+}

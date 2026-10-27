@@ -67,7 +67,12 @@ export interface PublicDocument {
 
 export const PUBLIC_BUCKET = 'public-assets';
 
+/**
+ * Public URL of an uploaded file. Paths starting with "/" are files shipped with
+ * the website itself (in /public), e.g. photos added before storage was set up.
+ */
 export function publicAssetUrl(client: SupabaseClient, path: string) {
+  if (path.startsWith('/')) return path;
   return client.storage.from(PUBLIC_BUCKET).getPublicUrl(path).data.publicUrl;
 }
 

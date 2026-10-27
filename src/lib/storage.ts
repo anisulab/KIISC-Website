@@ -63,6 +63,7 @@ export async function uploadPrivateFile(bucket: string, folder: string, file: Fi
 
 /** Best-effort removal of a replaced or orphaned file. */
 export async function removePublicFile(path: string | null | undefined) {
-  if (!supabase || !path) return;
+  // Files shipped with the website ("/...") are not in storage.
+  if (!supabase || !path || path.startsWith('/')) return;
   await supabase.storage.from(PUBLIC_BUCKET).remove([path]);
 }
